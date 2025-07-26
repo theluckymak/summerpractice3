@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Register{% endblock %}
+
+{% block body %}
+    <div class="min-h-screen flex items-center justify-center bg-cover bg-center" style="background-image: url('/images/login-bg.jpg');">
+        <div class="bg-white/30 backdrop-blur-lg px-10 py-12 max-w-sm w-80 rounded-xl shadow-2xl">
+            <h2 class="text-center text-3xl font-semibold text-gray-900 mb-8">Create an account</h2>
+            {{ form_start(registrationForm, { attr: { class: 'space-y-5' } }) }}
+            {{ form_row(registrationForm.email, {
+                attr: {
+                    class: 'w-full px-4 py-2 border border-gray-300 rounded-md bg-white bg-opacity-70 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-blue-400 placeholder-gray-500 text-sm'
+                }
+            }) }}
+            <h2></h2>
+
+
+            {{ form_row(registrationForm.plainPassword, {
+                label: 'Password',
+                attr: {
+                    class: 'w-full px-4 py-2 border border-gray-300 rounded-md bg-white bg-opacity-70 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-blue-400 placeholder-gray-500 text-sm'
+                }
+            }) }}
+            <h2></h2>
+
+
+            {{ form_row(registrationForm.agreeTerms, {
+                label: 'I agree to the terms and conditions',
+                attr: {
+                    class: 'text-white-700'
+                }
+            }) }}
+
+            <button type="submit"
+                    class="w-full py-2 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-md transition duration-200">
+                Register
+            </button>
+            {{ form_end(registrationForm) }}
+
+            <p class="mt-6 text-center text-sm text-gray-700">
+                Already have an account?
+                <a href="{{ path('app_login') }}" class="font-medium text-blue-600 hover:underline">Log In</a>
+            </p>
+        </div>
+    </div>
+{% endblock %}

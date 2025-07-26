@@ -1,0 +1,74 @@
+{#{% extends 'base.html.twig' %}#}
+
+{#{% block title %}Log in!{% endblock %}#}
+
+{#{% block body %}#}
+{#<form method="post">#}
+{#    {% if error %}#}
+{#        <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>#}
+{#    {% endif %}#}
+
+{#    {% if app.user %}#}
+{#        <div class="mb-3">#}
+{#            You are logged in as {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">Logout</a>#}
+{#        </div>#}
+{#    {% endif %}#}
+
+{#    <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>#}
+{#    <label for="inputEmail">Email</label>#}
+{#    <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" autocomplete="email" required autofocus>#}
+{#    <label for="inputPassword">Password</label>#}
+{#    <input type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" required>#}
+{#    <input type="hidden" name="_csrf_token" data-controller="csrf-protection" value="{{ csrf_token('authenticate') }}">#}
+
+{#    <div class="checkbox mb-3">#}
+{#        <label>#}
+{#            <input type="checkbox" name="_remember_me"> Remember me#}
+{#        </label>#}
+{#    </div>#}
+
+{#    <button class="btn btn-lg btn-primary" type="submit">#}
+{#        Sign in#}
+{#    </button>#}
+{#</form>#}
+{#{% endblock %}#}
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="min-h-screen flex items-center justify-center bg-cover bg-center" style="background-image: url('/images/login-bg.jpg');">
+        <div class="bg-white/30 backdrop-blur-lg px-10 py-12 max-w-sm w-80 rounded-xl shadow-2xl">
+            <h2 class="text-center text-3xl font-semibold text-gray-900 mb-8">Login</h2>
+            <form method="post" class="space-y-5">
+                {% if error %}
+                    <p class="text-red-500 text-sm text-center">{{ error.messageKey|trans(error.messageData, 'security') }}</p>
+                {% endif %}
+                <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+                <input type="email" name="_username" placeholder="Email" required
+                       class="w-full px-4 py-3 border border-white/40 rounded-full bg-white/10 text-white placeholder-white backdrop-blur-sm focus:outline-none focus:ring-2 focus:ring-white focus:border-white text-sm shadow-sm">
+
+                 <h2></h2>
+                <input type="password" name="_password" placeholder="Password" required
+                       class="w-full px-4 py-3 border border-white/50 rounded-full bg-white/20 text-white placeholder-white backdrop-blur-sm focus:outline-none focus:ring-2 focus:ring-white focus:border-white text-sm">
+
+                <div class="flex justify-between items-center text-sm">
+                    <label class="flex items-center">
+                        <input type="checkbox" name="_remember_me" class="h-4 w-4 text-white-600">
+                        <span class="ml-2 text-white">Remember me</span>
+                    </label>
+                    <a href="#" class="text-blue-600 hover:underline">Forgot password?</a>
+                </div>
+                <h2></h2>
+
+                <button type="submit"
+                        class="w-full py-2 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-md transition duration-200">
+                    Log In
+                </button>
+            </form>
+
+            <p class="mt-6 text-center text-sm text-white/80">
+                Don't have an account?
+                <a href="{{ path('app_register') }}" class="font-medium text-blue-600 hover:underline">
+            </p>
+        </div>
+    </div>
+{% endblock %}
